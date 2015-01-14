@@ -44,7 +44,9 @@ public class MainActivity extends ActionBarActivity {
 
     /** Called when the user clicks the Send button */
     public void sendMessage(View view) {
-        // Do something in response to button
+        //When button is pressed, create a new intent, get the contents of the
+        //message field as a string, and start the DisplayMessageActivity activity
+        //with this intent
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String message = editText.getText().toString();
