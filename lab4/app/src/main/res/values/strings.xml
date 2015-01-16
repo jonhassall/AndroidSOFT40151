@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lab 4 - Notifications</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="notification_button">Create Notification</string>
+    <string name="title_activity_notification_receiver">NotificationReceiverActivity</string>
+    <string name="received_title">This is the result of pressing a notification</string>
+    <string name="notification_button_clear">Clear notifications</string>
+
+</resources>
