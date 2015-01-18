@@ -2,6 +2,7 @@ package com.jonhassall.lab4_notifications;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
@@ -47,9 +48,11 @@ public class MainActivity extends ActionBarActivity {
         notificationManager.notify(0, noti);
     }
 
-    public void clearNotifications() {
+    public void clearNotifications(View view) {
         //Clear current notifications
-
+        Log.d("Click", "Clear notifications pressed");
+        NotificationManager notifManager= (NotificationManager) this.getSystemService(this.NOTIFICATION_SERVICE);
+        notifManager.cancelAll();
     }
 
     @Override
