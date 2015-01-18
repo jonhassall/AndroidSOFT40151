@@ -24,6 +24,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jonhassall.lab4_notifications.MainActivity" />
         </activity>
+        <activity
+            android:name=".DeleteNotificationReceiverActivity"
+            android:label="@string/title_activity_delete_notification_receiver"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jonhassall.lab4_notifications.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

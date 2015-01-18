@@ -8,5 +8,8 @@
     <string name="title_activity_notification_receiver">NotificationReceiverActivity</string>
     <string name="received_title">This is the result of pressing a notification</string>
     <string name="notification_button_clear">Clear notifications</string>
+    <string name="title_activity_delete_notification_receiver">Notification was cleared</string>
+    <string name="deletenotification_message">How dare you delete/clear my notification!</string>
+    <string name="instructions">This application lets you create a new notification, clear notifications, and will trigger an activity if you clear a notification.</string>
 
 </resources>

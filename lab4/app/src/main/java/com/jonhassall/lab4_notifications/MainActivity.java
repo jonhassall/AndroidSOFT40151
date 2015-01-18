@@ -23,18 +23,23 @@ public class MainActivity extends ActionBarActivity {
     public void createNotification(View view) {
         // Prepare intent which is triggered if the
         // notification is selected
-        Intent intent = new Intent(this, NotificationReceiverActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        Intent notificationIntent = new Intent(this, NotificationReceiverActivity.class);
+        PendingIntent notificationPendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+        Intent deleteNotificationIntent = new Intent(this, DeleteNotificationReceiverActivity.class);
+        PendingIntent notificationDeletePendingIntent = PendingIntent.getActivity(this, 0, deleteNotificationIntent, 0);
 
         // Build notification
         // Actions are just fake
         Notification noti = new Notification.Builder(this)
                 .setContentTitle("New notification")
                 .setContentText("Subject").setSmallIcon(R.drawable.bike_whiteonblack)
-                .setContentIntent(pIntent)
-                .addAction(R.drawable.bike_whiteonblack, "Call", pIntent)
-                .addAction(R.drawable.bike_whiteonblack, "More", pIntent)
-                .addAction(R.drawable.bike_whiteonblack, "And more", pIntent).build();
+                .setDeleteIntent(notificationDeletePendingIntent)
+                .setContentIntent(notificationPendingIntent)
+                .addAction(R.drawable.bike_whiteonblack, "Call", notificationPendingIntent)
+                .addAction(R.drawable.bike_whiteonblack, "More", notificationPendingIntent)
+                .addAction(R.drawable.bike_whiteonblack, "And more", notificationPendingIntent).build();
+
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         // hide the notification after its selected
         noti.flags |= Notification.FLAG_AUTO_CANCEL;
