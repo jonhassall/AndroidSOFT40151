@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -85,21 +87,118 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         v.vibrate(1000);
         //v.vibrate(vibratepattern, 5);
 
-        try {
-            Toast toast = Toast.makeText(context, "Writing to file", Toast.LENGTH_SHORT);
-            toast.show();
-            //FileOutputStream fos = openFileOutput("helloworld.txt", Context.MODE_PRIVATE);
-            //FileOutputStream fos = new FileOutputStream("helloworld.txt");
+        //Write to a file
 
-            FileOutputStream fOut = openFileOutput("helloworld.txt",MODE_WORLD_READABLE);
-            String str = "data";
-            fOut.write(str.getBytes());
-            fOut.close();
+        String filename = "myfile.txt";
+        String string = "Hello world!";
+        FileOutputStream outputStream;
+
+        //Internal storage
+        //File file = new File(context.getFilesDir(), filename);
+
+        //External storage
+        try {
+            String filepath = Environment.getExternalStorageDirectory().getPath();
+            File file = new File(filepath, "MyStorageDirectory");
+            //Recursively make any necessary directories
+            if (!file.exists())
+            {
+                file.mkdirs();
+            }
+            file = new File(filepath, "myfile.txt");
+            outputStream = new FileOutputStream(file, true);
+            outputStream.write("Hello world".getBytes());
+            outputStream.flush();
+            outputStream.close();
+        } catch (Exception ex)
+        {
+            Log.d(TAG, "Exception: " + ex.toString());
+        }
+
+
+
+/*
+        try {
+            outputStream = openFileOutput(filename, Context.MODE_WORLD_READABLE);
+            outputStream.write(string.getBytes());
+            outputStream.flush();
+            outputStream.close();
+        } catch (Exception e) {
+            Log.d(TAG, "Exception: " + e.toString());
+            e.printStackTrace();
+        }*/
+
+        //Read from file
+        try {
+            FileInputStream fin = openFileInput(filename);
+            int c;
+            String temp = "";
+            while( (c = fin.read()) != -1){
+                temp = temp + Character.toString((char)c);
+            }
+            //string temp contains all the data of the file.
+            fin.close();
+            Log.d(TAG, "File read result: " + temp);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast toast = Toast.makeText(context, "Error writing to file", Toast.LENGTH_SHORT);
-            toast.show();
         }
+
+
+
+
+        /*try {
+
+
+            //String path = context.getFilesDir().getAbsolutePath(); //Internal storage
+            //String path = context.getExternalFilesDir(null).getAbsolutePath(); //For SD card/external storage
+
+
+
+            //FileOutputStream fos = new FileOutputStream("helloworld.txt");
+
+            //File file = new File(path + "/helloworld.txt");
+            //FileOutputStream stream = new FileOutputStream(file);
+
+            String filename = "helloworld.txt";
+            String path = context.getFilesDir().getAbsolutePath(); //Internal storage
+            //String path = context.getExternalFilesDir(null).getAbsolutePath(); //For SD card/external storage
+
+            Log.d(TAG, "Output filename: " + path + "/" + filename);
+
+            Toast toast = Toast.makeText(context, "Output filename: " + path + "/" + filename, Toast.LENGTH_SHORT);
+            toast.show();
+
+
+            String string = "Hello world";
+            FileOutputStream outputStream;
+
+            try {
+                outputStream = openFileOutput(path + "/" + filename, Context.MODE_PRIVATE);
+                outputStream.write(string.getBytes());
+                outputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.d(TAG, "Exception: " + e.toString());
+            }
+
+
+            //FileOutputStream fos = openFileOutput(path + "/helloworld.txt", Context.MODE_PRIVATE);
+            //fos.write("Hello world".getBytes());
+            //fos.flush();
+            //fos.close();
+
+
+            //stream.write("Hello world".getBytes());
+            //stream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d(TAG, "Exception: " + e.toString());
+        }*/
+
+
+
+
     }
 
     public void initializeViews() {
