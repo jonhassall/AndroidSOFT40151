@@ -21,7 +21,7 @@
             android:id="@+id/write_internal_btn"
             android:layout_gravity="bottom"
             android:onClick="write_internal_btn"
-            android:layout_weight="0.25" />
+            android:layout_weight="0.3" />
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             android:id="@+id/write_external_btm"
             android:layout_gravity="bottom"
             android:onClick="write_external_btn"
-            android:layout_weight="0.25" />
+            android:layout_weight="0.3" />
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:id="@+id/read_internal_btn"
             android:layout_gravity="bottom"
             android:onClick="read_internal_btn"
-            android:layout_weight="0.25" />
+            android:layout_weight="0.3" />
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -45,9 +45,26 @@
             android:id="@+id/read_external_btn"
             android:layout_gravity="bottom"
             android:onClick="read_external_btn"
-            android:layout_weight="0.25" />
+            android:layout_weight="0.3" />
 
         </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Show Date/Time"
+            android:id="@+id/show_datetime"
+            android:layout_gravity="bottom"
+            android:onClick="show_datetime"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
 
     <TextView
         android:layout_width="wrap_content"

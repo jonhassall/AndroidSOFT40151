@@ -1,5 +1,8 @@
 package com.jonhassall.lab5_accel_vibr_writing_drawing;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -15,6 +18,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +31,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.Calendar;
 
 public class MainActivity extends ActionBarActivity implements SensorEventListener {
 
@@ -369,6 +374,17 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
             e.printStackTrace();
         }
 
+    }
+
+    public void show_datetime(View view) {
+        Log.d(TAG, "Show date/time");
+
+        final Calendar d = Calendar.getInstance();
+        String datetime = d.get(Calendar.YEAR) + " " + d.get(Calendar.MONTH) + " " + d.get(Calendar.DAY_OF_MONTH) + " " + d.get(Calendar.HOUR_OF_DAY) + " " + d.get(Calendar.MINUTE) + " " + d.get(Calendar.SECOND);
+
+        Context context = getApplicationContext();
+        Toast toast = Toast.makeText(context, datetime, Toast.LENGTH_SHORT);
+        toast.show();
     }
 
 }
