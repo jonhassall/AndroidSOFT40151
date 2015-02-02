@@ -28,6 +28,7 @@
             android:text="Write to External SD Card"
             android:id="@+id/write_external_btm"
             android:layout_gravity="bottom"
+            android:onClick="write_external_btn"
             android:layout_weight="0.25" />
         <Button
             android:layout_width="0dp"
@@ -43,6 +44,7 @@
             android:text="Read from External SD Card"
             android:id="@+id/read_external_btn"
             android:layout_gravity="bottom"
+            android:onClick="read_external_btn"
             android:layout_weight="0.25" />
 
         </LinearLayout>

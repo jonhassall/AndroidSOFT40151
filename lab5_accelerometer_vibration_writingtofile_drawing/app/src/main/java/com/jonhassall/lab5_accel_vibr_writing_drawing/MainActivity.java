@@ -246,26 +246,59 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 
     public void write_internal_btn(View view) {
 
+        Context context = getApplicationContext();
+
         //Write to a file
         String filename = "myfile.txt";
-        String string = "Hello world!";
+        String string = "Hello internal world!";
         FileOutputStream outputStream;
 
         //Internal storage
-        //File file = new File(context.getFilesDir(), filename);
-
-        //External storage
         try {
-            String filepath = Environment.getExternalStorageDirectory().getPath();
-            File file = new File(filepath, "MyStorageDirectory");
+            //String filepath = Environment.getExternalStorageDirectory().getPath();
+            //File file = new File(filepath, "MyStorageDirectory");
+
+            File file = new File(context.getFilesDir(), filename);
+
             //Recursively make any necessary directories
             if (!file.exists())
             {
                 file.mkdirs();
             }
-            file = new File(filepath, "myfile.txt");
-            outputStream = new FileOutputStream(file, true);
-            outputStream.write("Hello world".getBytes());
+            //file = new File(filepath, "myfile.txt");
+            outputStream = new FileOutputStream(file, false);
+            outputStream.write(string.getBytes());
+            outputStream.flush();
+            outputStream.close();
+
+            Toast toast = Toast.makeText(context, "Wrote to file", Toast.LENGTH_SHORT);
+            toast.show();
+        } catch (Exception ex)
+        {
+            Log.d(TAG, "Exception: " + ex.toString());
+        }
+
+    }
+
+    public void write_external_btn(View view) {
+
+        //Write to a file
+        String filename = "myfile.txt";
+        String string = "Hello external world!";
+        FileOutputStream outputStream;
+
+        //External storage
+        try {
+            String filepath = Environment.getExternalStorageDirectory().getPath();
+            File file = new File(filepath, filename);
+            //Recursively make any necessary directories
+            if (!file.exists())
+            {
+                file.mkdirs();
+            }
+
+            outputStream = new FileOutputStream(file, false);
+            outputStream.write(string.getBytes());
             outputStream.flush();
             outputStream.close();
 
@@ -305,4 +338,37 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         }
 
     }
+
+    public void read_external_btn(View view) {
+        //Read from a file
+        String filename = "myfile.txt";
+
+        //Read from file
+        try {
+
+            String filepath = Environment.getExternalStorageDirectory().getPath();
+            File file = new File(filepath, filename);
+
+            //FileInputStream fin = openFileInput(filepath + "/" + filename);
+            FileInputStream fin = new FileInputStream(file);
+
+            int c;
+            String temp = "";
+            while( (c = fin.read()) != -1){
+                temp = temp + Character.toString((char)c);
+            }
+            //string temp contains all the data of the file.
+            fin.close();
+            Log.d(TAG, "File read result: " + temp);
+
+            Context context = getApplicationContext();
+            Toast toast = Toast.makeText(context, "Read contents: " + temp, Toast.LENGTH_SHORT);
+            toast.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
