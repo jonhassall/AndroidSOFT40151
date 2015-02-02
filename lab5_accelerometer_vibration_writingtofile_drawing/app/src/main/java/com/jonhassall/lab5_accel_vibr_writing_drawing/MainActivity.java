@@ -14,6 +14,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,37 +87,6 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         vibratePattern[4] = 50;*/
         v.vibrate(1000);
         //v.vibrate(vibratepattern, 5);
-
-        //Write to a file
-
-        String filename = "myfile.txt";
-        String string = "Hello world!";
-        FileOutputStream outputStream;
-
-        //Internal storage
-        //File file = new File(context.getFilesDir(), filename);
-
-        //External storage
-        try {
-            String filepath = Environment.getExternalStorageDirectory().getPath();
-            File file = new File(filepath, "MyStorageDirectory");
-            //Recursively make any necessary directories
-            if (!file.exists())
-            {
-                file.mkdirs();
-            }
-            file = new File(filepath, "myfile.txt");
-            outputStream = new FileOutputStream(file, true);
-            outputStream.write("Hello world".getBytes());
-            outputStream.flush();
-            outputStream.close();
-        } catch (Exception ex)
-        {
-            Log.d(TAG, "Exception: " + ex.toString());
-        }
-
-
-
 /*
         try {
             outputStream = openFileOutput(filename, Context.MODE_WORLD_READABLE);
@@ -127,23 +97,6 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
             Log.d(TAG, "Exception: " + e.toString());
             e.printStackTrace();
         }*/
-
-        //Read from file
-        try {
-            FileInputStream fin = openFileInput(filename);
-            int c;
-            String temp = "";
-            while( (c = fin.read()) != -1){
-                temp = temp + Character.toString((char)c);
-            }
-            //string temp contains all the data of the file.
-            fin.close();
-            Log.d(TAG, "File read result: " + temp);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
 
 
         /*try {
@@ -289,5 +242,67 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
             deltaZMax = deltaZ;
             maxZ.setText(Float.toString(deltaZMax));
         }
+    }
+
+    public void write_internal_btn(View view) {
+
+        //Write to a file
+        String filename = "myfile.txt";
+        String string = "Hello world!";
+        FileOutputStream outputStream;
+
+        //Internal storage
+        //File file = new File(context.getFilesDir(), filename);
+
+        //External storage
+        try {
+            String filepath = Environment.getExternalStorageDirectory().getPath();
+            File file = new File(filepath, "MyStorageDirectory");
+            //Recursively make any necessary directories
+            if (!file.exists())
+            {
+                file.mkdirs();
+            }
+            file = new File(filepath, "myfile.txt");
+            outputStream = new FileOutputStream(file, true);
+            outputStream.write("Hello world".getBytes());
+            outputStream.flush();
+            outputStream.close();
+
+            Context context = getApplicationContext();
+            Toast toast = Toast.makeText(context, "Wrote to file", Toast.LENGTH_SHORT);
+            toast.show();
+        } catch (Exception ex)
+        {
+            Log.d(TAG, "Exception: " + ex.toString());
+        }
+
+    }
+
+    public void read_internal_btn(View view) {
+        //Read from a file
+        String filename = "myfile.txt";
+        String string = "Hello world!";
+
+        //Read from file
+        try {
+            FileInputStream fin = openFileInput(filename);
+            int c;
+            String temp = "";
+            while( (c = fin.read()) != -1){
+                temp = temp + Character.toString((char)c);
+            }
+            //string temp contains all the data of the file.
+            fin.close();
+            Log.d(TAG, "File read result: " + temp);
+
+            Context context = getApplicationContext();
+            Toast toast = Toast.makeText(context, "Read contents: " + temp, Toast.LENGTH_SHORT);
+            toast.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

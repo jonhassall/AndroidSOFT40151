@@ -8,6 +8,45 @@
     android:orientation="vertical"
     android:paddingTop="20dp" >
 
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Write to Internal Storage"
+            android:id="@+id/write_internal_btn"
+            android:layout_gravity="bottom"
+            android:onClick="write_internal_btn"
+            android:layout_weight="0.25" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Write to External SD Card"
+            android:id="@+id/write_external_btm"
+            android:layout_gravity="bottom"
+            android:layout_weight="0.25" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Read from Internal Storage"
+            android:id="@+id/read_internal_btn"
+            android:layout_gravity="bottom"
+            android:onClick="read_internal_btn"
+            android:layout_weight="0.25" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Read from External SD Card"
+            android:id="@+id/read_external_btn"
+            android:layout_gravity="bottom"
+            android:layout_weight="0.25" />
+
+        </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,6 +148,8 @@
                 android:textSize="15dp" />
         </LinearLayout>
 
+
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -160,6 +201,9 @@
                 android:text="0.0"
                 android:textSize="15dp" />
         </LinearLayout>
+
+
+
     </LinearLayout>
 
 </LinearLayout>
